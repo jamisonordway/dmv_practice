@@ -5,6 +5,11 @@
 already present in each. For each of the methods that was already defined, I read through line by line to understand 
 what it was doing. I took note of the data types of each attribute, and noted with what parameters each class object was 
 instantiated.*
+
+### Existing Code Notes 
+
+![IMG_1177 2](https://user-images.githubusercontent.com/56466345/228984887-095d21a0-74bf-4c52-92be-761d35faf9e9.jpg)
+
 ### What was hard about working with code you did not write?
 *Nothing... yet.* 
 ### What was easier than you expected about jumping in to an unfamiliar codebase? What made it easy? If nothing felt easy, what would’ve helped you feel more comfortable more quickly?
