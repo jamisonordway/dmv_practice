@@ -13,16 +13,23 @@ RSpec.describe FacilityFactory do
       expect(@factory).to be_a FacilityFactory
     end
 
-    it 'begins without facilities' do 
-      expect(@factory.facilities).to eq( [])
+    it 'begins without oregon facilities' do 
+      expect(@factory.or_facilities).to eq( [])
     end
   end
 
   describe '#create_or_facilities' do 
     it 'create facilities from data' do 
       @factory.create_or_facilities(@oregon_facilities)
-      expect(@factory.facilities).to_not be_empty
-      expect(@factory.facilities[0]).to be_a Facility
+      expect(@factory.or_facilities).to_not be_empty
+      expect(@factory.or_facilities[0]).to be_a Facility
+    end
+
+    it 'facilities instantiate with attributes' do 
+      @factory.create_or_facilities(@oregon_facilities)
+      expect(@factory.or_facilities[0].name).to eq('Albany DMV Office')
+      expect(@factory.or_facilities[0].address).to eq('2242 Santiam Hwy SE Albany OR 97321')
+      expect(@factory.or_facilities[0].phone).to eq('541-967-2014')
     end
   end
 end
