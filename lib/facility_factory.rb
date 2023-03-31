@@ -30,4 +30,15 @@ class FacilityFactory
       })
     end
   end
+
+  def create_mo_facilities(dmv_data)
+    dmv_data.map do |facility|
+      address = [facility[:address1], facility[:city], facility[:state], facility[:zipcode]]
+      @mo_facilities << Facility.new({
+        name: facility[:name], 
+        address: address.join(' '), 
+        phone: facility[:phone] 
+      })
+    end
+  end
 end
