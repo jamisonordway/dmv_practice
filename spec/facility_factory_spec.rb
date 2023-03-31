@@ -65,13 +65,13 @@ RSpec.describe FacilityFactory do
   end
   
   describe '#create_mo_facilities' do 
-    xit 'create facilities from data' do 
+    it 'create facilities from data' do 
       @factory.create_mo_facilities(@missouri_facilities)
       expect(@factory.mo_facilities).to_not be_empty
       expect(@factory.mo_facilities[0]).to be_a Facility
     end
 
-    xit 'facilities instantiate with attributes' do 
+    it 'facilities instantiate with attributes' do 
       @factory.create_mo_facilities(@missouri_facilities)
       expect(@factory.mo_facilities[0].name).to eq('OAKVILLE')
       expect(@factory.mo_facilities[0].address).to eq('3164 TELEGRAPH ROAD ST LOUIS MO 63125')
