@@ -151,9 +151,12 @@ RSpec.describe Facility do
   end
 
   describe '#renew_drivers_license' do 
-    xit 'renews drivers licenses for eligible' do 
+    it 'renews drivers licenses for eligible' do 
       @facility_1.add_service('Written Test')
       @facility_1.add_service('Road Test')
+      @registrant_2.earn_permit
+      @facility_1.administer_written_test(@registrant_1)
+      @facility_1.administer_written_test(@registrant_2)
       expect(@facility_1.renew_drivers_license(@registrant_1)).to be false
       @facility_1.add_service('Renew License')
       expect(@facility_1.renew_drivers_license(@registrant_1)).to be true
