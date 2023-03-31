@@ -1,8 +1,12 @@
 class FacilityFactory
-  attr_reader :or_facilities
+  attr_reader :or_facilities,
+              :ny_facilities,
+              :mo_facilities
   
   def initialize
     @or_facilities = []
+    @ny_facilities = []
+    @mo_facilities = []
   end
 
   def create_or_facilities(dmv_data)
@@ -14,5 +18,9 @@ class FacilityFactory
         phone: facility[:phone_number] 
       })
     end
+  end
+
+  def create_ny_facilities(dmv_data)
+
   end
 end
