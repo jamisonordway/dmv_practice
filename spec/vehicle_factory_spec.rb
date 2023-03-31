@@ -18,7 +18,7 @@ RSpec.describe VehicleFactory do
 
   describe '#create_vehicles' do 
     it 'create vehicles from data' do 
-      @factory.create_vehicles(wa_ev_registrations)
+      @factory.create_vehicles(@wa_ev_registrations)
       expect(@factory.vehicles).to have_at_least(1).things
       expect(@factory.vehicles[0]).to be_a Vehicle
     end
