@@ -21,6 +21,13 @@ class FacilityFactory
   end
 
   def create_ny_facilities(dmv_data)
-
+    dmv_data.map do |facility|
+      address = [facility[:street_address_line_1], facility[:city], facility[:state], facility[:zip_code]]
+      @ny_facilities << Facility.new({
+        name: facility[:office_name], 
+        address: address.join(' '), 
+        phone: facility[:public_phone_number] 
+      })
+    end
   end
 end
