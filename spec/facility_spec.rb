@@ -178,4 +178,12 @@ RSpec.describe Facility do
       expect(@registrant_3.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
     end
   end
+
+  describe 'helpers' do 
+    it 'can_perform?' do 
+      expect(@facility_1.can_perform?('Road Test')).to be false
+      @facility_1.add_service('Road Test')
+      expect(@facility_1.can_perform?('Road Test')).to be true
+    end
+  end
 end
