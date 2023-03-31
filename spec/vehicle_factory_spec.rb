@@ -34,19 +34,19 @@ RSpec.describe VehicleFactory do
   end
 
   describe '#create_vehicles from new york' do 
-    xit 'create vehicles from data' do 
+    it 'create vehicles from data' do 
       @factory.create_ny_vehicles(@ny_registrations)
       expect(@factory.vehicles).to_not be_empty
       expect(@factory.vehicles[0]).to be_a Vehicle
     end
 
-    xit 'vehicle methods can be called on vehicles created' do 
+    it 'vehicle methods can be called on vehicles created' do 
       @factory.create_ny_vehicles(@ny_registrations)
       require 'pry'; binding.pry
       expect(@factory.vehicles[0].vin).to eq('9999236')
       expect(@factory.vehicles[0].year).to eq(1937)
       expect(@factory.vehicles[0].model).to eq('4DSD')
-      expect(@factory.vehicles[0].engine).to eq(:gas)
+      expect(@factory.vehicles[0].engine).to eq(:combustion)
       expect(@factory.vehicles[0].antique?).to be true
     end
   end
