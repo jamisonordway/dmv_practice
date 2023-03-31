@@ -17,4 +17,12 @@ RSpec.describe FacilityFactory do
       expect(@factory.facilities).to eq( [])
     end
   end
+
+  describe '#create_or_facilities' do 
+    it 'create facilities from data' do 
+      @factory.create_or_facilities(@oregon_facilities)
+      expect(@factory.facilities).to_not be_empty
+      expect(@factory.facilities[0]).to be_a Facility
+    end
+  end
 end
