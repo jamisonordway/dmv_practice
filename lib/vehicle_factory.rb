@@ -21,14 +21,15 @@ class VehicleFactory
         @vehicles << Vehicle.new({
           vin: registration[:vin], 
           year: registration[:model_year].to_i, 
-          model: registration[:model], engine: nil
+          model: registration[:body_type], engine: engine_type(registration[:fuel_type])
         })
-      end.flatten!
+      end
+      @vehicles.flatten!
     end
   end
 
   #helpers 
-  
+
   def engine_type(engine_type)
     if engine_type == 'GAS' || engine_type == 'DIESEL' || engine_type == 'PROPANE' || engine_type == 'FLEX'
       :combustion
