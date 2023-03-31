@@ -31,7 +31,7 @@ class Facility
         @collected_fees += 100 
         vehicle.plate_type = :regular
       end
-      vehicle.registration_date = Date.new
+      vehicle.registration_date = Date.today
       @registered_vehicles << vehicle 
     end
   end
@@ -74,6 +74,12 @@ class Facility
       false
     end
   end
+
+  def can_perform?(service)
+    @services.include?(service)
+  end
 end
+
+
 
 
