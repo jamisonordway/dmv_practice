@@ -38,12 +38,7 @@ class Facility
 
   def administer_written_test(registrant)
     if can_perform?('Written Test') 
-      if registrant.age >= 16 && registrant.permit?
-        registrant.license_data[:written] = true
-        true
-      else
-        false
-      end
+      registrant.age >= 16 && registrant.permit? ? registrant.license_data[:written] = true : false
     else
       false
     end
@@ -51,12 +46,7 @@ class Facility
   
   def administer_road_test(registrant)
     if can_perform?('Road Test') 
-      if registrant.license_data[:written] == true
-        registrant.license_data[:license] = true
-        true
-      else
-        false
-      end
+      registrant.license_data[:written] == true ? registrant.license_data[:license] = true : false
     else
       false
     end
