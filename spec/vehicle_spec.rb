@@ -33,4 +33,12 @@ RSpec.describe Vehicle do
       expect(@camaro.electric_vehicle?).to eq(false)
     end
   end
+
+  describe '#change_registration_date' do 
+    it 'can change the registration date of the vehicle' do 
+      expect(@cruz.registration_date).to be nil
+      @cruz.change_registration_date
+      expect(@cruz.registration_date).to eq(Date.today)
+    end
+  end
 end
