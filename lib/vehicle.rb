@@ -30,4 +30,8 @@ class Vehicle
   def change_registration_date 
     @registration_date = Date.today
   end
+
+  def change_plate_type(plate_type)
+    @plate_type = plate_type
+  end
 end
