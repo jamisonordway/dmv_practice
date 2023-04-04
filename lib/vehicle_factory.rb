@@ -59,10 +59,8 @@ class VehicleFactory
     count_by_make = Hash.new(0)
     make_vehicles.map do |vehicle|
       count_by_make[vehicle.make] += 1 
-      require 'pry'; binding.pry
     end
     most_pop_make = count_by_make.max_by{|make, amount| amount}.first
-    require 'pry'; binding.pry
     "#{most_pop_make}"
   end
 end
