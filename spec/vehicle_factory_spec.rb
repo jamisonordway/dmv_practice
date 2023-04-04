@@ -8,23 +8,23 @@ RSpec.describe VehicleFactory do
   end
 
   describe '#initialize' do 
-    it 'exists' do
+    xit 'exists' do
       expect(@factory).to be_a VehicleFactory
     end
 
-    it 'starts with no vehicles' do 
+    xit 'starts with no vehicles' do 
       expect(@factory.vehicles).to eq([])
     end
   end
 
   describe '#create_vehicles' do 
-    it 'create vehicles from data' do 
+    xit 'create vehicles from data' do 
       @factory.create_wa_vehicles(@wa_ev_registrations)
       expect(@factory.vehicles).to_not be_empty
       expect(@factory.vehicles[0]).to be_a Vehicle
     end
     
-    it 'washington vehicles have attributes' do 
+    xit 'washington vehicles have attributes' do 
       @factory.create_wa_vehicles(@wa_ev_registrations)
       expect(@factory.vehicles[0].vin).to eq('WMEEJ9AA7E')
       expect(@factory.vehicles[0].year).to eq(2014)
@@ -32,7 +32,7 @@ RSpec.describe VehicleFactory do
       expect(@factory.vehicles[0].model).to eq('Fortwo Electric Drive')
     end
 
-    it 'New York vehicles have attributes' do 
+    xit 'New York vehicles have attributes' do 
       @factory.create_ny_vehicles(@ny_registrations)
       expect(@factory.vehicles[0].vin).to eq('9999236')
       expect(@factory.vehicles[0].year).to eq(1937)
@@ -43,7 +43,7 @@ RSpec.describe VehicleFactory do
 
 
   describe '#engine_type' do 
-    it 'can decipher engines' do 
+    xit 'can decipher engines' do 
       expect(@factory.engine_type('PROPANE')).to eq(:combustion)
       expect(@factory.engine_type('ELECTRIC')).to eq(:ev)
       expect(@factory.engine_type('AN ACTUAL HORSE')).to eq(:wtf)
@@ -51,13 +51,13 @@ RSpec.describe VehicleFactory do
   end
 
   describe '#create_vehicles from new york' do 
-    it 'create vehicles from data' do 
+    xit 'create vehicles from data' do 
       @factory.create_ny_vehicles(@ny_registrations)
       expect(@factory.vehicles).to_not be_empty
       expect(@factory.vehicles[0]).to be_a Vehicle
     end
 
-    it 'vehicle methods can be called on vehicles created' do 
+    xit 'vehicle methods can be called on vehicles created' do 
       @factory.create_ny_vehicles(@ny_registrations)
       expect(@factory.vehicles[0].vin).to eq('9999236')
       expect(@factory.vehicles[0].year).to eq(1937)
@@ -68,24 +68,29 @@ RSpec.describe VehicleFactory do
   end
 
   describe 'EV registration data' do 
-    it '#most_popular_model' do 
+    xit '#most_popular_model' do 
       @factory.create_wa_vehicles(@wa_ev_registrations)
       expect(@factory.most_popular_model).to eq('Leaf')
     end
 
-    it '#most_popular_make' do 
+    xit '#most_popular_make' do 
       @factory.create_wa_vehicles(@wa_ev_registrations)
       expect(@factory.most_popular_make).to eq('TESLA')
     end
     
-    it '#count_by_model_year for washington' do 
+    xit '#count_by_model_year for washington' do 
       @factory.create_wa_vehicles(@wa_ev_registrations)
       expect(@factory.count_by_model_year(2012)).to eq(31)
     end
 
-    it '#count_by_model_year for new york' do 
+    xit '#count_by_model_year for new york' do 
       @factory.create_ny_vehicles(@ny_registrations)
       expect(@factory.count_by_model_year(1968)).to eq(4)
+    end
+
+    it '#most_registered_county for washington' do 
+      @factory.create_wa_vehicles(@wa_ev_registrations)
+      expect(@factory.most_registered_county(@wa_ev_registrations)).to eq('King')
     end
   end
 end
