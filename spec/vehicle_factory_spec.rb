@@ -74,9 +74,8 @@ RSpec.describe VehicleFactory do
     end
 
     it '#most_popular_make' do 
-      @factory.create_wa_vehicles(@wa_ev_registrations)
-      require 'pry'; binding.pry
-      expect(@factory.most_popular_make).to eq('nil')
+      @factory.create_ny_vehicles(@wa_ev_registrations)
+      expect(@factory.most_popular_make).to eq('TESLA')
     end
   end
 end
