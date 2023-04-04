@@ -20,60 +20,51 @@ class Facility
   end
 
   def register_vehicle(vehicle)
-    if @services.include?('Vehicle Registration')
+    if can_perform?('Vehicle Registration')
       if vehicle.antique? 
         @collected_fees += 25 
-        vehicle.plate_type = :antique
+        vehicle.change_plate_type(:antique)
       elsif vehicle.electric_vehicle? 
         @collected_fees += 200 
-        vehicle.plate_type = :ev
+        vehicle.change_plate_type(:ev)
       else
         @collected_fees += 100 
-        vehicle.plate_type = :regular
+        vehicle.change_plate_type(:regular)
       end
-      vehicle.registration_date = Date.new
+      vehicle.change_registration_date
       @registered_vehicles << vehicle 
     end
   end
 
   def administer_written_test(registrant)
-    if @services.include?('Written Test') 
-      if registrant.age >= 16 && registrant.permit?
-        registrant.license_data[:written] = true
-        true
-      else
-        false
-      end
+    if can_perform?('Written Test') 
+      registrant.age >= 16 && registrant.permit? ? registrant.license_data[:written] = true : false
     else
       false
     end
   end
   
   def administer_road_test(registrant)
-    if @services.include?('Road Test') 
-      if registrant.license_data[:written] == true
-        registrant.license_data[:license] = true
-        true
-      else
-        false
-      end
+    if can_perform?('Road Test') 
+      registrant.license_data[:written] == true ? registrant.license_data[:license] = true : false
     else
       false
     end
   end
 
   def renew_drivers_license(registrant)
-    if @services.include?('Renew License') 
-      if registrant.license_data[:license] == true
-        registrant.license_data[:renewed] = true
-        true
-      else
-        false
-      end
+    if can_perform?('Renew License') 
+      registrant.license_data[:license] ? registrant.license_data[:renewed] = true : false
     else
       false
     end
   end
+
+  def can_perform?(service)
+    @services.include?(service)
+  end
 end
+
+
 
 
