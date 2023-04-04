@@ -85,4 +85,19 @@ class VehicleFactory
     most_pop_make = count_by_make.max_by{|make, amount| amount}.first
     "#{most_pop_make}"
   end
+  
+  def most_popular_make
+    make_vehicles = @vehicles.sort_by{|vehicle| vehicle.make}
+    count_by_make = Hash.new(0)
+    make_vehicles.map do |vehicle|
+      count_by_make[vehicle.make] += 1 
+    end
+    most_pop_make = count_by_make.max_by{|make, amount| amount}.first
+    "#{most_pop_make}"
+  end
+
+  def count_by_model_year(yr)
+    count = @vehicles.count{|vehicle| vehicle.year == yr}
+    count
+  end
 end
