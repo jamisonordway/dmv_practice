@@ -5,7 +5,9 @@ RSpec.describe Facility do
     @facility_1 = Facility.new({
       name: 'Albany DMV Office', 
       address: '2242 Santiam Hwy SE Albany OR 97321', 
-      phone: '541-967-2014' 
+      phone: '541-967-2014', 
+      daily_hours: '9-5',
+      holidays: 'All of them'
     })
     @facility_2 = Facility.new({
       name: 'Ashland DMV Office', 
@@ -45,6 +47,8 @@ RSpec.describe Facility do
       expect(@facility_1.address).to eq('2242 Santiam Hwy SE Albany OR 97321')
       expect(@facility_1.phone).to eq('541-967-2014')
       expect(@facility_1.services).to eq([])
+      expect(@facility_1.daily_hours).to eq('9-5')
+      expect(@facility_1.holidays).to eq('All of them')
     end
   end
 

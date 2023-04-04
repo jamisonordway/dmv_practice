@@ -4,15 +4,20 @@ class Facility
               :phone, 
               :services, 
               :registered_vehicles, 
-              :collected_fees
+              :collected_fees, 
+              :daily_hours, 
+              :holidays
 
   def initialize(facility_details)
     @name = facility_details[:name]
     @address = facility_details[:address]
     @phone = facility_details[:phone]
+    @daily_hours = facility_details[:daily_hours]
+    @holidays = facility_details[:holidays]
     @services = []
     @registered_vehicles = []
     @collected_fees = 0
+
   end
 
   def add_service(service)
@@ -60,11 +65,15 @@ class Facility
     end
   end
 
+  #helpers
   def can_perform?(service)
     @services.include?(service)
   end
 end
 
-
+#Facilities:
+#Add in a few more helpful attributes.
+#What are the daily hours for each facility?
+#For the states that provide (Missouri), which holidays are they closed?
 
 
