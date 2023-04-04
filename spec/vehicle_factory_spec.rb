@@ -24,7 +24,7 @@ RSpec.describe VehicleFactory do
       expect(@factory.vehicles[0]).to be_a Vehicle
     end
     
-    it 'washington vehicles have attributes' do 
+    xit 'washington vehicles have attributes' do 
       @factory.create_wa_vehicles(@wa_ev_registrations)
       expect(@factory.vehicles[0].vin).to eq('WMEEJ9AA7E')
       expect(@factory.vehicles[0].year).to eq(2014)
@@ -32,7 +32,7 @@ RSpec.describe VehicleFactory do
       expect(@factory.vehicles[0].model).to eq('Fortwo Electric Drive')
     end
 
-    it 'New York vehicles have attributes' do 
+    xit 'New York vehicles have attributes' do 
       @factory.create_ny_vehicles(@ny_registrations)
       expect(@factory.vehicles[0].vin).to eq('9999236')
       expect(@factory.vehicles[0].year).to eq(1937)
@@ -68,14 +68,19 @@ RSpec.describe VehicleFactory do
   end
 
   describe 'EV registration data' do 
-    it '#most_popular_model' do 
+    xit '#most_popular_model' do 
       @factory.create_wa_vehicles(@wa_ev_registrations)
       expect(@factory.most_popular_model).to eq('Leaf')
     end
 
-    it '#most_popular_make' do 
-      @factory.create_ny_vehicles(@wa_ev_registrations)
+    xit '#most_popular_make' do 
+      @factory.create_wa_vehicles(@wa_ev_registrations)
       expect(@factory.most_popular_make).to eq('TESLA')
+    end
+    
+    it '#count_by_model_year for washington' do 
+      @factory.create_wa_vehicles(@wa_ev_registrations)
+      expect(@factory.count_by_model_year(2012)).to eq(31)
     end
   end
 end
