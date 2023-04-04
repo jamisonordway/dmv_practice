@@ -23,10 +23,18 @@ class FacilityFactory
   def create_ny_facilities(dmv_data)
     dmv_data.map do |facility|
       address = [facility[:street_address_line_1], facility[:city], facility[:state], facility[:zip_code]]
+      daily_hours = {
+        monday: "#{facility[:monday_beginning_hours]} - #{facility[:monday_ending_hours]}",
+        tuesday: "#{facility[:tuesday_beginning_hours]} - #{facility[:tuesday_ending_hours]}",
+        wednesday: "#{facility[:wednesday_beginning_hours]} - #{facility[:wednesday_ending_hours]}",
+        thursday: "#{facility[:thursday_beginning_hours]} - #{facility[:thursday_ending_hours]}",
+        friday: "#{facility[:friday_beginning_hours]} - #{facility[:friday_ending_hours]}"
+      }
       @ny_facilities << Facility.new({
         name: facility[:office_name], 
         address: address.join(' '), 
-        phone: facility[:public_phone_number] 
+        phone: facility[:public_phone_number], 
+        daily_hours: daily_hours
       })
     end
   end
