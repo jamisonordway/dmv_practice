@@ -46,7 +46,19 @@ class VehicleFactory
     model_vehicles.map do |vehicle|
       count_by_model[vehicle.model] += 1 
     end
-    most_pop_model = count_by_model.max_by{|model, amount| amount}
-    most_pop_model[0]
+    most_pop_model = count_by_model.max_by{|model, amount| amount}.first
+    most_pop_model
+  end
+
+  def most_popular_make
+    make_vehicles = @vehicles.sort_by{|vehicle| vehicle.make}
+    count_by_make = Hash.new(0)
+    make_vehicles.map do |vehicle|
+      count_by_make[vehicle.make] += 1 
+      require 'pry'; binding.pry
+    end
+    most_pop_make = count_by_make.max_by{|make, amount| amount}.first
+    require 'pry'; binding.pry
+    "#{most_pop_make}"
   end
 end
