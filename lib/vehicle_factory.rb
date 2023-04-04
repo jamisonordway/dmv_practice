@@ -10,7 +10,9 @@ class VehicleFactory
       vehicles << Vehicle.new({
         vin: registration[:vin_1_10], 
         year: registration[:model_year].to_i, 
-        model: registration[:model], engine: :ev
+        make: registration[:make],
+        model: registration[:model], 
+        engine: :ev
       })
     end.flatten!
   end
@@ -21,7 +23,9 @@ class VehicleFactory
         @vehicles << Vehicle.new({
           vin: registration[:vin], 
           year: registration[:model_year].to_i, 
-          model: registration[:body_type], engine: engine_type(registration[:fuel_type])
+          make: registration[:make],
+          model: registration[:body_type], 
+          engine: engine_type(registration[:fuel_type])
         })
       end
       @vehicles.flatten!

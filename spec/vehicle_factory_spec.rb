@@ -23,7 +23,24 @@ RSpec.describe VehicleFactory do
       expect(@factory.vehicles).to_not be_empty
       expect(@factory.vehicles[0]).to be_a Vehicle
     end
+    
+    it 'washington vehicles have attributes' do 
+      @factory.create_wa_vehicles(@wa_ev_registrations)
+      expect(@factory.vehicles[0].vin).to eq('WMEEJ9AA7E')
+      expect(@factory.vehicles[0].year).to eq(2014)
+      expect(@factory.vehicles[0].make).to eq('SMART')
+      expect(@factory.vehicles[0].model).to eq('Fortwo Electric Drive')
+    end
+
+    it 'New York vehicles have attributes' do 
+      @factory.create_ny_vehicles(@ny_registrations)
+      expect(@factory.vehicles[0].vin).to eq('9999236')
+      expect(@factory.vehicles[0].year).to eq(1937)
+      expect(@factory.vehicles[0].make).to eq('CHRY')
+      expect(@factory.vehicles[0].model).to eq('4DSD')
+    end
   end
+
 
   describe '#engine_type' do 
     xit 'can decipher engines' do 
