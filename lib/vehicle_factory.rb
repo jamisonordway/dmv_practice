@@ -45,17 +45,7 @@ class VehicleFactory
       @vehicles.flatten!
     end
   end
-
-  def engine_type(engine_type)
-    if engine_type == 'GAS' || engine_type == 'DIESEL' || engine_type == 'PROPANE' || engine_type == 'FLEX'
-      :combustion
-    elsif engine_type == 'ELECTRIC'
-      :ev
-    else
-      :wtf
-    end
-  end
-
+  
   def most_popular_model
     model_vehicles = @vehicles.sort_by(&:model)
     count_by_model = Hash.new(0)
