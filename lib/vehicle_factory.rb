@@ -104,6 +104,6 @@ class VehicleFactory
   def most_registered_county(dmv_data)
     counter = Hash.new(0)
     dmv_data.map {|registration| counter[registration[:county]] += 1  }
-    counter.max_by{|county, num| num}
+    counter.max_by{|county, num| num}.first
   end
 end

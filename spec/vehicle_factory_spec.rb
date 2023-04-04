@@ -92,5 +92,10 @@ RSpec.describe VehicleFactory do
       @factory.create_wa_vehicles(@wa_ev_registrations)
       expect(@factory.most_registered_county(@wa_ev_registrations)).to eq('King')
     end
+
+    it '#most_registered_county for new york' do 
+      @factory.create_ny_vehicles(@ny_registrations)
+      expect(@factory.most_registered_county(@ny_registrations)).to eq('OUT-OF-STATE')
+    end
   end
 end
