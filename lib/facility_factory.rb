@@ -45,7 +45,9 @@ class FacilityFactory
       @mo_facilities << Facility.new({
         name: facility[:name], 
         address: address.join(' '), 
-        phone: facility[:phone] 
+        phone: facility[:phone], 
+        daily_hours: facility[:daysopen],
+        holidays: facility[:holidaysclosed]
       })
     end
   end
