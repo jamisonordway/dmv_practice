@@ -64,11 +64,11 @@ RSpec.describe FacilityFactory do
       expect(@factory.ny_facilities[1].address).to eq('92-11 179TH PLACE JAMAICA NY 11433')
       expect(@factory.ny_facilities[1].phone).to eq('7185268546')
       expect(@factory.ny_facilities[1].daily_hours).to eq({
-        monday: "8:45 AM - 4:00 PM", 
-        tuesday: "8:45 AM - 4:00 PM", 
-        wednesday: "8:45 AM - 4:00 PM", 
-        thursday: "8:45 AM - 4:00 PM", 
-        friday: "8:45 AM - 4:00 PM"
+        :monday=>"8:45AM - 4:00PM", 
+        :tuesday=>"8:45AM - 4:00PM", 
+        :wednesday=>"8:45AM - 4:00PM",
+        :thursday=>"8:45AM - 4:00PM", 
+        :friday=>"8:45AM - 4:00PM"
       })
       expect(@factory.ny_facilities[1].holidays).to eq(nil)
     end
