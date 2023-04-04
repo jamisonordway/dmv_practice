@@ -100,4 +100,10 @@ class VehicleFactory
     count = @vehicles.count{|vehicle| vehicle.year == yr}
     count
   end
+
+  def most_registered_county(dmv_data)
+    counter = Hash.new(0)
+    dmv_data.map {|registration| counter[registration[:county]] += 1  }
+    counter.max_by{|county, num| num}
+  end
 end
