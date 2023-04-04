@@ -82,5 +82,10 @@ RSpec.describe VehicleFactory do
       @factory.create_wa_vehicles(@wa_ev_registrations)
       expect(@factory.count_by_model_year(2012)).to eq(31)
     end
+
+    it '#count_by_model_year for new york' do 
+      @factory.create_wa_vehicles(@wa_ev_registrations)
+      expect(@factory.count_by_model_year(1968)).to eq(9)
+    end
   end
 end
