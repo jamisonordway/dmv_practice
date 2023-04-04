@@ -39,4 +39,14 @@ class VehicleFactory
       :wtf
     end
   end
+
+  def most_popular_model
+    model_vehicles = @vehicles.sort_by(&:model)
+    count_by_model = Hash.new(0)
+    model_vehicles.map do |vehicle|
+      count_by_model[vehicle.model] += 1 
+    end
+    most_pop_model = count_by_model.max_by{|model, amount| amount}
+    most_pop_model[0]
+  end
 end
