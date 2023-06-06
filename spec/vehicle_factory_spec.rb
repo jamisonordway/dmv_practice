@@ -2,8 +2,6 @@ require 'spec_helper'
 
 RSpec.describe VehicleFactory do
   before(:each) do
-    wa_ev_reg_test_data
-    require 'pry'; binding.pry
     @factory = VehicleFactory.new
     dmv_service = DmvDataService.new
     @wa_ev_registrations = dmv_service.wa_ev_registrations

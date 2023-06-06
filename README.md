@@ -19,7 +19,7 @@ If we think about this from a testing perspective, we cannot control the data th
 
 So how can we write our tests using assumed data? Enter Mocks!
 
-Open `vehicle_factory_spec.rb`. In the test setup (before block), see if you can add a mock that tells the test that when `.wa_ev_registrations` is called on a `dmv_service`, it should return our data located in `wa_data`.
+Open `vehicle_factory_spec.rb`. In the test setup (before block), see if you can add a mock that tells the test that when `.wa_ev_registrations` is called on a `dmv_service`, it should return our data located in the method at the bottom of the spec file `wa_ev_reg_test_data`.
 
 Now do the same for the `@ny_registrations` data. 
 
