@@ -2,7 +2,62 @@ require 'spec_helper'
 
 RSpec.describe VehicleFactory do
   before(:each) do
-    wa_data = [{:electric_vehicle_type=>"Battery Electric Vehicle (BEV)",
+    wa_ev_reg_test_data
+    require 'pry'; binding.pry
+    @factory = VehicleFactory.new
+    dmv_service = DmvDataService.new
+    @wa_ev_registrations = dmv_service.wa_ev_registrations
+    @ny_registrations = dmv_service.ny_registrations
+  end
+
+  describe '#initialize' do 
+    it 'exists' do
+      expect(@factory).to be_a VehicleFactory
+    end
+
+    it 'starts with no vehicles' do 
+      expect(@factory.vehicles).to eq([])
+    end
+  end
+
+  describe '#create_vehicles' do 
+    it 'create vehicles from data' do 
+      @factory.create_wa_vehicles(@wa_ev_registrations)
+      
+      expect(@factory.vehicles).to_not be_empty
+      expect(@factory.vehicles[0]).to be_a Vehicle
+    end
+    
+    it 'washington vehicles have attributes' do 
+      @factory.create_wa_vehicles(@wa_ev_registrations)
+
+      expect(@factory.vehicles[0].vin).to eq('WMEEJ9AA7E')
+      expect(@factory.vehicles[0].year).to eq(2014)
+      expect(@factory.vehicles[0].make).to eq('SMART')
+      expect(@factory.vehicles[0].model).to eq('Fortwo Electric Drive')
+    end
+
+    it 'New York vehicles have attributes' do 
+      @factory.create_ny_vehicles(@ny_registrations)
+      
+      expect(@factory.vehicles[0].vin).to eq('9999236')
+      expect(@factory.vehicles[0].year).to eq(1937)
+      expect(@factory.vehicles[0].make).to eq('CHRY')
+      expect(@factory.vehicles[0].model).to eq('4DSD')
+    end
+  end
+
+
+  describe '#engine_type' do 
+    it 'can decipher engines' do 
+      expect(@factory.engine_type('PROPANE')).to eq(:combustion)
+      expect(@factory.engine_type('ELECTRIC')).to eq(:ev)
+      expect(@factory.engine_type('AN ACTUAL HORSE')).to eq(:wtf)
+    end
+  end
+
+  def wa_ev_reg_test_data
+    [{:electric_vehicle_type=>"Battery Electric Vehicle (BEV)",
       :vin_1_10=>"KAT1234KAT",
       :dol_vehicle_id=>"197458138",
       :model_year=>"2022",
@@ -140,56 +195,5 @@ RSpec.describe VehicleFactory do
       :census_tract_2020=>"53067010520",
       :legislative_district=>"22",
       :electric_utility=>"PUGET SOUND ENERGY INC"}]
-
-    @factory = VehicleFactory.new
-    dmv_service = DmvDataService.new
-    @wa_ev_registrations = dmv_service.wa_ev_registrations
-    @ny_registrations = dmv_service.ny_registrations
-  end
-
-  describe '#initialize' do 
-    it 'exists' do
-      expect(@factory).to be_a VehicleFactory
-    end
-
-    it 'starts with no vehicles' do 
-      expect(@factory.vehicles).to eq([])
-    end
-  end
-
-  describe '#create_vehicles' do 
-    it 'create vehicles from data' do 
-      @factory.create_wa_vehicles(@wa_ev_registrations)
-      
-      expect(@factory.vehicles).to_not be_empty
-      expect(@factory.vehicles[0]).to be_a Vehicle
-    end
-    
-    it 'washington vehicles have attributes' do 
-      @factory.create_wa_vehicles(@wa_ev_registrations)
-
-      expect(@factory.vehicles[0].vin).to eq('WMEEJ9AA7E')
-      expect(@factory.vehicles[0].year).to eq(2014)
-      expect(@factory.vehicles[0].make).to eq('SMART')
-      expect(@factory.vehicles[0].model).to eq('Fortwo Electric Drive')
-    end
-
-    it 'New York vehicles have attributes' do 
-      @factory.create_ny_vehicles(@ny_registrations)
-      
-      expect(@factory.vehicles[0].vin).to eq('9999236')
-      expect(@factory.vehicles[0].year).to eq(1937)
-      expect(@factory.vehicles[0].make).to eq('CHRY')
-      expect(@factory.vehicles[0].model).to eq('4DSD')
-    end
-  end
-
-
-  describe '#engine_type' do 
-    it 'can decipher engines' do 
-      expect(@factory.engine_type('PROPANE')).to eq(:combustion)
-      expect(@factory.engine_type('ELECTRIC')).to eq(:ev)
-      expect(@factory.engine_type('AN ACTUAL HORSE')).to eq(:wtf)
-    end
   end
 end
