@@ -1,6 +1,9 @@
 # The DMV
 ## Upgrading our testing.
 
+
+# Using Stubs
+
 Remember this project from 3 years... I mean 3 weeks ago? 
 
 Recall we were making a LIVE API call in the `dmv_data_service.rb` file. 
@@ -19,3 +22,14 @@ So how can we write our tests using assumed data? Enter Mocks!
 Open `vehicle_factory_spec.rb`. In the test setup (before block), see if you can add a mock that tells the test that when `.wa_ev_registrations` is called on a `dmv_service`, it should return our data located in `wa_data`.
 
 Now do the same for the `@ny_registrations` data. 
+
+
+# Using a Mock
+Look again at the `vehicle_factory_spec.rb`, in the before(:each) block where we are initializing a new `DmvDataService` object. 
+
+Is it necessary that we actually instantiate this object? 
+
+How would we update this code to use a mock or double instead for the `DmvDataService` object?
+
+Does this code still pass? 
+What advantages does this provide? What drawbacks? 
