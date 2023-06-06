@@ -1,17 +1,21 @@
 # The DMV
-### Describe the steps you took to dig in to this code base. 
-### What was your process? If you don’t feel you had a process, define one that you might like to try next time.
-*I made a chart of sorts on my whiteboard by opening up each of the class files and writing down the state and behavior 
-already present in each. For each of the methods that was already defined, I read through line by line to understand 
-what it was doing. I took note of the data types of each attribute, and noted with what parameters each class object was 
-instantiated.*
+## Upgrading our testing.
 
-### Existing Code Notes 
+Remember this project from 3 years... I mean 3 weeks ago? 
 
-![IMG_1177 2](https://user-images.githubusercontent.com/56466345/228984887-095d21a0-74bf-4c52-92be-761d35faf9e9.jpg)
+Recall we were making a LIVE API call in the `dmv_data_service.rb` file. 
 
-### What was hard about working with code you did not write?
-*Nothing... yet.* 
-### What was easier than you expected about jumping in to an unfamiliar codebase? What made it easy? If nothing felt easy, what would’ve helped you feel more comfortable more quickly?
-*Drawing a chart of the codebase already present was a lot easier than the first time around. Also easier than I expected 
-it to be this time. Better understanding of OOP and ruby made it easy.*
+If we look in the spec file `vehicle_factory_spec.rb`, we can see in the setup that we are calling on the methods from `dmv_data_service` that result in live network calls, every time we run our tests.
+
+Why might this be bad? 
+* Slooooooooow test times especially as the test suite grows and the data sets grow. We're just calling on two states worth of data here, what if we were calling on all 50 states? This would be really slow.
+* API have limits with how many times you can hit them. Hitting an API too many times can result in fees or lockout.
+
+
+If we think about this from a testing perspective, we cannot control the data that comes from the API so we don't need to test their data. We want to test that the methods we wrote in our own code base work properly with the assumed input of the API data. 
+
+So how can we write our tests using assumed data? Enter Mocks!
+
+Open `vehicle_factory_spec.rb`. In the test setup (before block), see if you can add a mock that tells the test that when `.wa_ev_registrations` is called on a `dmv_service`, it should return our data located in `wa_data`.
+
+Now do the same for the `@ny_registrations` data. 
