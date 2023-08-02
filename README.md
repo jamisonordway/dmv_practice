@@ -17,9 +17,9 @@ Why might this be bad?
 
 If we think about this from a testing perspective, we cannot control the data that comes from the API so we don't need to test their data. We want to test that the methods we wrote in our own code base work properly with the assumed input of the API data. 
 
-So how can we write our tests using assumed data? Enter Mocks!
+So how can we write our tests using assumed data? Enter Stubs!
 
-Open `vehicle_factory_spec.rb`. In the test setup (before block), see if you can add a mock that tells the test that when `.wa_ev_registrations` is called on a `dmv_service`, it should return our data located in the method at the bottom of the spec file `wa_ev_reg_test_data`.
+Open `vehicle_factory_spec.rb`. In the test setup (before block), see if you can add a stub that tells the test that when `.wa_ev_registrations` is called on a `dmv_service`, it should return our data located in the method at the bottom of the spec file `wa_ev_reg_test_data`.
 
 Now do the same for the `@ny_registrations` data. 
 
