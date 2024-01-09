@@ -8,7 +8,7 @@ Remember this project from 3 years... I mean 3 weeks ago?
 
 Recall we were making a LIVE API call in the `dmv_data_service.rb` file. 
 
-If we look in the spec file `vehicle_factory_spec.rb`, we can see in the setup that we are calling on the methods from `dmv_data_service` that result in live network calls, every time we run our tests.
+If we look in the spec file `vehicle_factory_spec.rb`, we can see that in the setup block, we are calling on methods from `dmv_data_service` that result in *live* network calls, every time we run our tests.
 
 Why might this be bad? 
 * Slooooooooow test times especially as the test suite grows and the data sets grow. We're just calling on two states worth of data here, what if we were calling on all 50 states? This would be really slow.
@@ -19,7 +19,7 @@ If we think about this from a testing perspective, we cannot control the data th
 
 So how can we write our tests using assumed data? Enter Stubs!
 
-Open `vehicle_factory_spec.rb`. In the test setup (before block), see if you can add a stub that tells the test that when `.wa_ev_registrations` is called on a `dmv_service`, it should return our data located in the method at the bottom of the spec file `wa_ev_reg_test_data`.
+Open `vehicle_factory_spec.rb`. In the test setup (before block), see if you can add a stub that tells the test that when `.wa_ev_registrations` is called on a `dmv_service`, it should return the data located in the method at the bottom of the spec file called `wa_ev_reg_test_data`.
 
 Now do the same for the `@ny_registrations` data. 
 
