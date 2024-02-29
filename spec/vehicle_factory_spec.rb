@@ -38,10 +38,10 @@ RSpec.describe VehicleFactory do
     it 'New York vehicles have attributes' do 
       @factory.create_ny_vehicles(@ny_registrations)
       
-      expect(@factory.vehicles[0].vin).to eq('9999236')
-      expect(@factory.vehicles[0].year).to eq(1937)
-      expect(@factory.vehicles[0].make).to eq('CHRY')
-      expect(@factory.vehicles[0].model).to eq('4DSD')
+      expect(@factory.vehicles[0].vin).to eq('999999999999')
+      expect(@factory.vehicles[0].year).to eq('1975')
+      expect(@factory.vehicles[0].make).to eq('STARC')
+      expect(@factory.vehicles[0].model).to eq('N/A')
     end
   end
 
@@ -193,5 +193,43 @@ RSpec.describe VehicleFactory do
       :census_tract_2020=>"53067010520",
       :legislative_district=>"22",
       :electric_utility=>"PUGET SOUND ENERGY INC"}]
+  end
+
+  def ny_vehicles_test_data
+    [{
+      :record_type=>"BOAT",
+      :vin=>"999999999999",
+      :registration_class=>"BOT",
+      :city=>"HILTON",
+      :state=>"NY",
+      :zip=>"14468",
+      :county=>"MONROE",
+      :model_year=>"1975",
+      :make=>"STARC",
+      :body_type=>"BOAT",
+      :fuel_type=>"GAS",
+      :reg_valid_date=>"2022-08-24T00:00:00.000",
+      :reg_expiration_date=>"2025-07-31T00:00:00.000",
+      :scofflaw_indicator=>"N",
+      :suspension_indicator=>"N",
+      :revocation_indicator=>"N"},
+      {:record_type=>"VEH",
+      :vin=>"9999236",
+      :registration_class=>"HIS",
+      :city=>"ROSLYN",
+      :state=>"NY",
+      :zip=>"11576",
+      :county=>"NASSAU",
+      :model_year=>"1937",
+      :make=>"CHRY",
+      :body_type=>"4DSD",
+      :fuel_type=>"GAS",
+      :unladen_weight=>"6300",
+      :reg_valid_date=>"2023-05-09T00:00:00.000",
+      :reg_expiration_date=>"2024-06-23T00:00:00.000",
+      :color=>"BK",
+      :scofflaw_indicator=>"N",
+      :suspension_indicator=>"N",
+      :revocation_indicator=>"N"}]
   end
 end

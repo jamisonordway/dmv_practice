@@ -16,6 +16,18 @@ class VehicleFactory
       })
     end.flatten!
   end
+
+  def create_ny_vehicles(dmv_data)
+    dmv_data.map do |registration|
+      vehicles << Vehicle.new({
+        vin: registration[:vin],
+        year: registration[:model_year],
+        make: registration[:make],
+        model: 'N/A',
+        engine: registration[:fuel_type]
+      })      
+    end.flatten!
+  end
   
   def engine_type(engine_type)
     if engine_type == 'GAS' || engine_type == 'DIESEL' || engine_type == 'PROPANE' || engine_type == 'FLEX'
